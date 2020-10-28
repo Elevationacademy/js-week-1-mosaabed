@@ -1,49 +1,94 @@
-//Variables & Operation
+// Conditional Statements
 //ex1 
-const maxCapacity = 14 
-let surfTime = true
-let bestStudent 
-//const purposeInlife
-//console.log(maxCapacity)
+let numChildren = 11
+const isCareful = true
+if(!isCareful){
+    numChildren +=1
+}
+console.log(numChildren) 
 
-//ex2 
-const str1 = "Let's try this "
-const str2 = str1 + "is the best thing ever"
-console.log(str2)
+// ex2 
+let letsilverwareCount = 20
+if (letsilverwareCount %2 == 1){
+    conole.log("there is something missing")
+}
 
-//ex3 
-const password = "hello world"
-const confirmPassword = "hello world"
-console.log(password == confirmPassword)
+
+// ex3
+if(performance == "good") {
+    salary += goodBonus
+} else if(performance == "stellar") {
+  salary += stellarBonus
+}
 
 //ex4
-x = 423 *12
-y = 802/2
-z = (5+6)*3
-console.log (x + ' ' + y + ' ' + z)
+const isVIP = false
+let cash = 500
 
-// ex5 
-console.log((5 > 2) && false) // false
-console.log(!("knife" === "sword")) //true
-console.log((1 < 2) || (-1 > -1) || !false) // true
-console.log(("a") && true) // not boolean 
-console. log((31 % 5) == "1") //true
-console.log(!!true) //true 
-console.log("5th Avenue" != "5th Avenue")//fales
-console.log(52 !== "52" )//true
-console.log(undefined || null) //null
+if(isVIP || cash > 300){
+  console.log("welcome to the candy shop")
+} else {
+  console.log("go home")
+}
 
- //ex6
-let a = 3
-a = 4
-let c = 0
-let b = a
-b = 2
-a = b
+//ex5 
+/*
+a = 3 
+b = 15
+c = 12
+d = 160
+*/
+const a = 3
+let b = 2
+let c = 0 || 12
+let d
+
 b = c
-c = a
-a = b
+b++
+if(d){
+  b = a
+}
 
-console.log(a) // 0
-console.log(b) // 0
-console.log(c) // 2
+d = a + (b * c)
+d++
+b += 2
+console.log(a +" " +b +" " +c+ " " + d)
+
+
+//ex6 
+
+const gender = null
+let profession = "business"
+if (gender == "male") {
+    profession += "man"
+  }else if(gender == "female") {
+    proession += "woman"
+  }else {
+    profession += "person"
+  }
+  
+  console.log(profession)
+
+  // ex7
+  let boughtTesla = true
+  const yearOfTeslaPurchase = 2014
+  let isUSCitizen = true
+  let currentYear = 2018
+
+  if (boughtTesla && isUSCitizen ){
+      console.log(" how long ago you bought your Tesla")
+      if((currentYear - yearOfTeslaPurchase > 4))
+      {
+        console.log("would you like an upgrade")
+      }else
+      {
+          console.log("would you satisfied with the car")
+      }
+      
+  }else if(isUSCitizen)
+  {
+        console.log("would you like to move to the US")
+  }else
+  {
+      console.log("arer you interested in buying one")
+  }
