@@ -1,111 +1,90 @@
-// Scops
+// JS This
 
-//===================================================================================
-//Section 1 : error
-//===================================================================================
-const run = true  // run :global
+// ex1
+const person = {
+  hungry : true,
 
-if (run) {
-    let distance = 8 // distance : local belong to the if scope
-    for (var i = 0; i < distance; i++) {
-        console.log("running")
+  feed: function () {
+    if (this.hungry) {
+      this.hungry = false;
+      alert('Im no longer hungry!')
     }
-    console.log("Finished running " + distance + " miles")
-}
-
-
-console.log("Damn, you see this gal? She ran " + distance + " miles")    
-
-
-//===================================================================================
-//Section 2 : error
-//===================================================================================
-if (13 == "space") {
-  let cowSound = "moo"
-}
-else {
-  console.log("Cow says " + cowSound)
-}
-
-
-//===================================================================================
-//Section 3 : console will log:
-//            Served a special fish
-//            Served a special lettuce plate
-//            Served a special curious cheese
-//            Finished serving all the orders: fish,lettuce plate,curious cheese
-//===================================================================================
-const serveOrders = function (orders) {
-  // orders :local (serveOrders scope)
-  for (let order of orders) {
-      let specialOrder = "special " + order //orde & specialOrdeer : local (for scope)
-      console.log("Served a " + specialOrder)
   }
-
-  console.log("Finished serving all the orders: " + orders)
-}
-const allOrders = ["fish", "lettuce plate", "curious cheese"] //global
-serveOrders(allOrders)
-
-
-
-//===================================================================================
-//Section 4 :error
-//===================================================================================
-const pot = "red pot with earth in it" //global
-
-const getSeed = function () {
-    const seed = "brown seed" // local (getseed scope)
 }
 
-const plant = function () {
-    getSeed()
-    console.log("Planting the " + seed + " inside a " + pot)
-}
-
-plant()
+person.feed() //should alert "I'm no longer hungry"
 
 
+// ex2
+const pump = function (amount) {
+  this.liters += amount;
+  console.log('You put ' + amount + ' liters in ' + this.name);
+};
 
-//===================================================================================
-//Section 5 - Optional(if you have time) :error
-//===================================================================================
-const doesUserExist = function (name) {
-  const users = [{ name: "Shapira", age: 19 }, { name: "Lucius", age: 23 }] // local
-  for (let u of users) {
-      if (u.name == name) {
-          const found = true // local (for scope)
-      }
+const garage = {
+  car1: {
+    name: 'Audi',
+    liters: 3,
+    fillTank: pump
+  },
+  car2: {
+    name: 'Mercedes',
+    liters: 1,
+    fillTank: pump
   }
-  return found // errror
-}
+};
 
-const userExists = doesUserExist("Lucius")
-if (userExists) {
-  console.log("We found the ragamuffin!")
-}
-else {
-  console.log("No idea where this person is.")
-}
+garage.car1.fillTank(2);
+console.log('Audi should have 5 liters: ',  garage.car1.liters);
+
+garage.car2.fillTank(30);
+console.log('Mercedes should have 31 liters: ', garage.car2.liters);
 
 
-//===================================================================================
-//Section 6 - Optional (if you have time) :error
-//===================================================================================
-const isEnough = false //global
+//ex3 
+const pumpFuel = function (plane) {
+  plane.fuel += 1;
+};
 
-const makeEnough = function () {
-    for (let i = 0; i < 10; i++) {
-        if (i > 5) {
-            isEnough = true // const can not be change error !!
-        }
+const airplane = {
+  fuel : 0 , 
+  fly: function () {
+    if (this.fuel < 2) {
+      return 'on the ground!';
     }
-}
+    else {
+      return 'flying!';
+    }
+  }
+};
 
-makeEnough()
-if (isEnough) {
-    console.log("Finally, sheesh")
-}
-else {
-    console.log("Here we go again...")
-}
+console.log('The plane should not be able to fly (yet): ' + airplane.fly());
+
+pumpFuel(airplane);
+console.log('The plane should STILL not be able to fly: ' + airplane.fly());
+
+pumpFuel(airplane);
+console.log('Take off! ' + airplane.fly());
+
+
+// ex4 
+const tipJar = {
+  coinCount: 20,
+  tip: function () {
+    this.coinCount += 1;
+  },
+  stealCoins: function(amount)
+  {
+      this.coinCount -=amount ;
+  }
+};
+
+tipJar.tip();
+console.log('Tip jar should have 21 coins: ' + tipJar.coinCount);
+
+tipJar.stealCoins(3);
+console.log('Tip jar should have 18 coins: ' + tipJar.coinCount);
+
+tipJar.stealCoins(10);
+console.log('Tip jar should have 8 coins: ' + tipJar.coinCount);
+
